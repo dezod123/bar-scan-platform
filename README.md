@@ -38,7 +38,15 @@ Make sure your `DATABASE_URL` matches the port you are using.
 - Docker credentials (default):
   - user: `postgres`
   - password: `postgres`
-- To stop and remove the container data:
+- To stop the container (keeps data):
+```
+docker compose stop
+```
+- To stop and remove the container (keeps data):
+```
+docker compose down
+```
+- To stop and remove the container plus all data (wipe):
 ```
 docker compose down -v
 ```
@@ -50,7 +58,7 @@ psql -U postgres -h localhost -p 5432 -c "CREATE DATABASE bar_scan_platform;"
 3) Configure environment variables:
 - Copy root env:
 ```
-copy .env.example .env
+cp .env.example .env
 ```
 - Update `DATABASE_URL` in `.env`:
   - Docker example (port 5433):
@@ -98,9 +106,9 @@ Note: Barcode human-readable text can be toggled in
 ## Ngrok (mobile testing)
 1) Download ngrok and extract ngrok.exe:
 https://ngrok.com/download
-2) Add the folder containing ngrok.exe to your PATH.
-Example: if `ngrok.exe` is in `C:\tools\ngrok\ngrok.exe`, add `C:\tools\ngrok` to PATH.
-3) Add your token:
+2) Add the folder containing ngrok.exe to your PATH in your Environment Variables.
+Example: if `ngrok.exe` is in `C:\tools\ngrok\ngrok.exe`, add `C:\tools\ngrok` to PATH.  
+3) Restart your ide and all your terminals then Add your token:
 ```
 ngrok config add-authtoken YOUR_TOKEN
 ```
