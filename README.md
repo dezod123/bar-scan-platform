@@ -106,12 +106,12 @@ ngrok config add-authtoken YOUR_TOKEN
 ```
 Note: If ngrok says the config file is not found, create it here:
 `C:\Users\YOUR_USER\AppData\Local\ngrok\ngrok.yml`
-Make sure the file extension is `.yml`
-4) Run only the web tunnel:
+Make sure the file extension is `.yml`.
+4) Run only the web tunnel (In a new Terminal):
 ```
 ngrok http 3000
 ```
-5) Make sure the API is running locally (separate terminal):
+5) Make sure the API is running locally (Restart Terminal A):
 ```
 pnpm -F @bar-scan/api dev
 ```
