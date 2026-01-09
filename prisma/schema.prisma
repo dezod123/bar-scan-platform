@@ -1,0 +1,52 @@
+// Prisma schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum ActionType {
+  AWAITING
+  DEPLOY
+  RETURN
+}
+
+enum CodeType {
+  QR
+  BARCODE
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  name      String
+  codeValue String
+  codeType  CodeType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  scans Scan[]
+
+  @@unique([codeValue, codeType])
+  @@index([name])
+}
+
+model Scan {
+  id        String     @id @default(cuid())
+  codeValue String
+  codeType  CodeType
+  action    ActionType?
+  productId String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([productId])
+  @@index([action])
+  @@index([codeValue, codeType])
+  @@index([createdAt])
+}

@@ -1,0 +1,21 @@
+﻿# dependencies
+node_modules/
+
+# env
+.env
+.env.local
+!apps/web/.env.local
+
+# builds
+.next/
+dist/
+coverage/
+
+# logs
+*.log
+
+# misc
+.DS_Store
+
+# pnpm
+.pnpm-store/
